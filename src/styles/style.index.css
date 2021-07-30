@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap');
 
+:root{
+  --page-color-background: #2E4057;
+  --page-color-font: #DCD6F7;
+
+  --chat-color-font-username: #2E5266;
+  --chat-box-message-userAgent-color-background: #63A088;
+  --chat-box-message-otherUser-color-background: #63A088;
+  --chat-form-background: #002642;
+  
+}
+
 *{
   padding: 0;
   margin: 0;
@@ -9,6 +20,7 @@
 
 body{
   min-height: 100vh;
+  background-color: var(--page-color-background);
 }
 
 #content {
@@ -17,7 +29,6 @@ body{
   justify-content: space-between;
 
   min-height: 100vh;
-  background-color: #2E4057;
 }
 
 #content section{
@@ -29,7 +40,7 @@ body{
   height: 45px;
   display: flex;
   justify-content: space-around;
-  background-color: #002642;
+  background-color: var(--chat-form-background);
 
   margin: 0 20px;
 
@@ -85,21 +96,21 @@ body{
   font-size: 0.9rem;
   font-weight: bold;
 
-  color: #2E5266;
+  color: var(--chat-color-font-username);
 }
 
 .userAgentMessage{
-  background-color: #63A088;
+  background-color: var(--chat-box-message-userAgent-color-background);
   align-self: flex-end;
 }
 .otherUserMessage{
-  background-color: #0B032D;
+  background-color: var(--chat-box-message-otherUser-color-background);
   align-self: flex-start;
 }
 
 #message{
   margin-top: 3px;
-  color: #DCD6F7;
+  color: var(--page-color-font);
 }
 
 #date-message{
@@ -108,7 +119,7 @@ body{
 }
 
 #date-message small{
-  color: #DCD6F7;
+  color: var(--page-color-font);
   font-weight: bold;
   font-size: 10px;
   align-self: flex-end;
