@@ -4,7 +4,7 @@
   --page-color-background: #030404;
   --page-color-font: #fcffff;
 
-  --chat-color-font-username: ;
+  --chat-color-font-username: var(--chat-form-button-background);
   --chat-box-message-userAgent-color-background: #253841;
   --chat-box-message-otherUser-color-background: #1d2b28;
   --chat-form-background: #002642;
@@ -113,6 +113,10 @@ body{
   background-color: var(--chat-box-message-userAgent-color-background);
   align-self: flex-end;
 }
+.userAgentMessage #message{
+  margin-bottom: 8px;
+}
+
 .otherUserMessage{
   margin-top: 8px;
   background-color: var(--chat-box-message-otherUser-color-background);
@@ -135,7 +139,6 @@ body{
 
 #date-message small{
   color: var(--page-color-font);
-  font-weight: bold;
   font-size: 10px;
   align-self: flex-end;
 }
