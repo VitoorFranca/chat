@@ -7,6 +7,8 @@ const io = new Server(server);
 
 const moment = require('moment');
 
+const { PORT } = require('./config.js');
+
 app.use(express.static(__dirname + '/src'));
 
 app.get('/', (req, res) => {
@@ -32,6 +34,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
+server.listen(PORT, () => {
+  console.log('listening on *:' + PORT);
 });
