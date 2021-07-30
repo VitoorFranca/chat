@@ -70,6 +70,15 @@
       return {user, message};
     };
 
+    async function getMessages () {
+      const URL = window.location.origin;
+
+      const response = await fetch(URL + '/messages');
+      const json = await response.json();
+      const messagesArray = json.messages;
+      return messagesArray;
+    };
+
     sendMessageBtn.addEventListener('click', ev => {
       ev.preventDefault();
 
@@ -78,11 +87,21 @@
       if(message && user) sendMessage(user, message);
     });
 
-      //  Verify if is authenticate
+      //  Verify if is authenticate & render messages
     window.addEventListener('load', ev => {
       const { user } = getData();
 
       if(!user) window.location.href = '/';
+
+      getMessages()
+        .then(messages => {
+          messages.forEach(({user, message, createdAt}) => {
+              renderMessage(user, message, createdAt)
+            });
+      });
+
+
+
     });
   </script>
 </body>
