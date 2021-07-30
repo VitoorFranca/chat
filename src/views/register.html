@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <form>
+    <label for="#input-name">Nome: </label>
+    <input id="input-name" type="text" />
+    <input id="input-submit" type="submit" value="Entrar">
+  </form>
+
+  <script>
+    const form = document.querySelector('form');
+    const nameInput = document.querySelector('#input-name');
+
+    function registerUser(userName){
+
+      const now = new Date();
+
+      const user = {
+        name: userName,
+        created: now
+      };
+
+      localStorage.setItem('user', JSON.stringify(user));
+    };
+
+    form.addEventListener('submit', ev => {
+      ev.preventDefault();
+      
+      const userName = nameInput.value;
+
+      if(userName) registerUser(userName);
+
+      nameInput.value = '';
+
+      window.location.href = '/chat';
+    });
+  </script>
+</body>
+</html>

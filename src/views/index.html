@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/style.index.css">
+  <title>Chat</title>
+</head>
+<body>
+  <section id="content">
+    
+    <section id="messages-container"></section>
+    
+    <form>
+      <input type="text" id="input-message">
+      <button id="send-message-button"> Enviar </button>
+    </form>
+  </section>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const sendMessageBtn = document.querySelector('#send-message-button');
+    const inputMessage = document.querySelector('#input-message');
+    const messagesContainer = document.querySelector('#messages-container');
+
+    const socket = io();
+    socket.on('chat message', onReceiveMessage)
+
+    function sendMessage(user, message){
+      socket.emit('chat message', {user, message});
+    };
+
+    function onReceiveMessage({user, message }){
+      renderMessage(user, message);
+    };
+
+    function renderMessage (user, message) {
+      const { name } = user;
+      const { user: userAgent } = getData();
+      const { name: userAgentName } = userAgent;
+
+      const isUserAgent = name === userAgentName;
+
+      messagesContainer.innerHTML += `
+      <div id="message-box" class='${ isUserAgent ? 'userAgentMessage' : 'otherUserMessage'}'>
+
+        ${ isUserAgent
+          ? ''
+          : `<span class='user-name'>${name}</span>`
+        }
+        
+        <span id='message'>
+          ${ message }
+        </span>
+      </div>
+        `
+    };
+
+    function getData () {
+
+      let user = localStorage.getItem('user');
+      user = JSON.parse(user);
+
+      const message = inputMessage.value;
+      inputMessage.value = '';
+
+      return {user, message};
+    };
+
+    sendMessageBtn.addEventListener('click', ev => {
+      ev.preventDefault();
+
+      const { user, message } = getData();
+      
+      if(message && user) sendMessage(user, message);
+    });
+
+      //  Verify if is authenticate
+    window.addEventListener('load', ev => {
+      const { user } = getData();
+
+      if(!user) window.location.href = '/';
+    });
+  </script>
+</body>
+</html>
