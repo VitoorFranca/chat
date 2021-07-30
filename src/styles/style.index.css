@@ -6,7 +6,7 @@
 
   --chat-color-font-username: #2E5266;
   --chat-box-message-userAgent-color-background: #63A088;
-  --chat-box-message-otherUser-color-background: #63A088;
+  --chat-box-message-otherUser-color-background: rgb(11, 3, 45);
   --chat-form-background: #002642;
   
 }
