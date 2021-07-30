@@ -30,11 +30,11 @@
       socket.emit('chat message', {user, message});
     };
 
-    function onReceiveMessage({user, message }){
-      renderMessage(user, message);
+    function onReceiveMessage({user, message, createdAt}){
+      renderMessage(user, message, createdAt);
     };
 
-    function renderMessage (user, message) {
+    function renderMessage (user, message, createdAt) {
       const { name } = user;
       const { user: userAgent } = getData();
       const { name: userAgentName } = userAgent;
@@ -51,6 +51,9 @@
         
         <span id='message'>
           ${ message }
+        </span>
+        <span id="date-message">
+          <small>${ createdAt }</small>
         </span>
       </div>
         `

@@ -23,7 +23,6 @@ body{
 #content section{
   display: flex;
   flex-direction: column;
-  /* background-color: cornflowerblue; */
 }
 #content form{
   /* width: 100%; */
@@ -35,10 +34,6 @@ body{
   margin: 0 20px;
 
   border-radius: 7px;
-
-  /* border-top-left-radius: 50%;
-  border
-  border-bottom-left-radius: 50%; */
 }
 
 #content form input[type=text], #content form button{
@@ -68,15 +63,10 @@ body{
   border-radius: 5px;
   width: 20%;
   opacity: 1;
-
-  
-  /* transition-property: background-color; */
-  /* transition-duration: 2s; */
 }
 
 #content form button:active{
   opacity: 0.8;
-  /* background-color: blueviolet; */
 }
 
 #message-box{
@@ -110,4 +100,16 @@ body{
 #message{
   margin-top: 3px;
   color: #DCD6F7;
+}
+
+#date-message{
+  display: flex;
+  flex-direction: column;
+}
+
+#date-message small{
+  color: #DCD6F7;
+  font-weight: bold;
+  font-size: 10px;
+  align-self: flex-end;
 }

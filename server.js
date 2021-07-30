@@ -5,6 +5,8 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+const moment = require('moment');
+
 app.use(express.static(__dirname + '/src'));
 
 app.get('/', (req, res) => {
@@ -17,11 +19,12 @@ app.get('/chat', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  console.log('At ' + moment().format('L') + ' ' + moment().format('LT'));
 
     //  Message IO
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
+  socket.on('chat message', (data) => {
+    data.createdAt = `${moment().format('LT')}`;
+    io.emit('chat message', data);
   });
 
   socket.on('disconnect', () => {
