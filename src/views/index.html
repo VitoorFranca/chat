@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/style.index.css">
+  <script src="https://kit.fontawesome.com/00da781f1c.js" crossorigin="anonymous"></script>
   <title>Chat</title>
 </head>
 <body>
@@ -14,7 +15,7 @@
     
     <form>
       <input type="text" id="input-message">
-      <button id="send-message-button"> Enviar </button>
+      <button id="send-message-button"> <i class="far fa-paper-plane"></i> </button>
     </form>
   </section>
   <script src="/socket.io/socket.io.js"></script>
@@ -57,6 +58,8 @@
         </span>
       </div>
         `
+
+        updateScroll();
     };
 
     function getData () {
@@ -79,6 +82,11 @@
       return messagesArray;
     };
 
+    function updateScroll(){
+      const element = document.getElementById("messages-container");
+      window.scrollTo(0,element.offsetHeight);
+    };
+
     sendMessageBtn.addEventListener('click', ev => {
       ev.preventDefault();
 
@@ -88,20 +96,19 @@
     });
 
       //  Verify if is authenticate & render messages
-    window.addEventListener('load', ev => {
+    window.addEventListener('load', async ev => {
       const { user } = getData();
 
       if(!user) window.location.href = '/';
 
-      getMessages()
+      await getMessages()
         .then(messages => {
           messages.forEach(({user, message, createdAt}) => {
               renderMessage(user, message, createdAt)
             });
       });
 
-
-
+      updateScroll();
     });
   </script>
 </body>
