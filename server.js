@@ -13,7 +13,7 @@ const { PORT } = require('./config.js');
 const messages = [
   {
     user: {
-      name: 'John',
+      name: 'Vitor 🧙‍♂️λ',
       createdAt: moment().format()
     },
     message: 'Hello, World!',
